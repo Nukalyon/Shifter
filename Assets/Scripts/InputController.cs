@@ -6,9 +6,6 @@ public class InputController : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     Vector2 speed = new Vector2(50, 50);
-    public string axisX;
-    public string axisY;
-    bool facingRight = false;
 
 
     // Start is called before the first frame update
@@ -19,32 +16,33 @@ public class InputController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        Flip();
+    }
+
     private void FixedUpdate()
     {
-        float dirX = Input.GetAxisRaw(axisX);
-        float dirY = Input.GetAxisRaw(axisY);
-        GetKeyCode();
+        /*
+        //GetKeyCode();
         Vector3 move = new Vector3(dirX * speed.x, dirY * speed.y, 0);
 
         move *= Time.deltaTime;
 
-        transform.Translate(move);
-
-        if(dirX < 0)
-        {
-            Flip(false);
-        }
-        if(dirX > 0)
-        {
-            Flip(true);
-        }
+        rb.transform.Translate(move);
+        */
     }
 
-    void Flip(bool val)
+    void Flip()
     {
-        sr.flipX = val;
-
-        facingRight = !facingRight;
+        if (rb.velocity.x < 0)
+        {
+            sr.flipX = false;
+        }
+        if (rb.velocity.x > 0)
+        {
+            sr.flipX = true;
+        }
     }
 
     private void GetKeyCode()
@@ -56,5 +54,22 @@ public class InputController : MonoBehaviour
                 Debug.Log("Pressed " + vKey.ToString());
             }
         }
+    }
+
+    internal void Jump()
+    {
+        Debug.Log("Jump !");
+    }
+
+    internal void Movement(float v1, float v2)
+    {
+        Vector3 move = new Vector3(v1 * speed.x, v2 * speed.y, 0);
+        move *= Time.deltaTime;
+        rb.transform.Translate(move);
+    }
+
+    internal void Attack()
+    {
+        Debug.Log("Piou piou");
     }
 }
