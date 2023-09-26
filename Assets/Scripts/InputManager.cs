@@ -19,6 +19,9 @@ public class InputManager : MonoBehaviour
 
     [Header("Object References")]
     [SerializeField] private InputController player;
+    [SerializeField] private FireingBehaviour projectile;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -48,7 +51,7 @@ public class InputManager : MonoBehaviour
     {
         if(Input.GetKeyDown(shootKey)) 
         {
-            player.Attack();
+            projectile.FireProjectile();
         }
     }
 

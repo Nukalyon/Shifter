@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    SpriteRenderer sr;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer sr;
     Vector2 speed = new Vector2(50, 50);
 
 
@@ -12,8 +12,8 @@ public class InputController : MonoBehaviour
     void Start()
     {
         //Debug.Log("Start");
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        //rb = GetComponentInChildren<Rigidbody2D>();
+        //sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -21,27 +21,17 @@ public class InputController : MonoBehaviour
         Flip();
     }
 
-    private void FixedUpdate()
-    {
-        /*
-        //GetKeyCode();
-        Vector3 move = new Vector3(dirX * speed.x, dirY * speed.y, 0);
-
-        move *= Time.deltaTime;
-
-        rb.transform.Translate(move);
-        */
-    }
-
     void Flip()
     {
         if (rb.velocity.x < 0)
         {
-            sr.flipX = false;
+            //sr.flipX = true;
+            transform.localScale = new Vector3(-1,1,1);
         }
         if (rb.velocity.x > 0)
         {
-            sr.flipX = true;
+            //sr.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -65,7 +55,7 @@ public class InputController : MonoBehaviour
     {
         Vector3 move = new Vector3(v1 * speed.x, v2 * speed.y, 0);
         move *= Time.deltaTime;
-        rb.transform.Translate(move);
+        transform.Translate(move);
     }
 
     internal void Attack()
