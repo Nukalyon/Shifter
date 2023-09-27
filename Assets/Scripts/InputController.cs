@@ -5,15 +5,15 @@ public class InputController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [SerializeField] SpriteRenderer sr;
-    Vector2 speed = new Vector2(50, 50);
+    int speed = 5;
 
 
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log("Start");
-        //rb = GetComponentInChildren<Rigidbody2D>();
-        //sr = GetComponentInChildren<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -26,12 +26,12 @@ public class InputController : MonoBehaviour
         if (rb.velocity.x < 0)
         {
             //sr.flipX = true;
-            transform.localScale = new Vector3(-1,1,1);
+            transform.localScale = new Vector3(1,1,1);
         }
         if (rb.velocity.x > 0)
         {
             //sr.flipX = false;
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
@@ -46,16 +46,23 @@ public class InputController : MonoBehaviour
         }
     }
 
-    internal void Jump()
+    internal void Jump(int force)
     {
         Debug.Log("Jump !");
+        rb.AddForce(new Vector2(0, force));
     }
-
+    /*
     internal void Movement(float v1, float v2)
     {
         Vector3 move = new Vector3(v1 * speed.x, v2 * speed.y, 0);
         move *= Time.deltaTime;
         transform.Translate(move);
+    }
+    */
+
+    internal void Move(int direction)
+    {
+        rb.velocity = new Vector2(speed * direction, rb.velocity.y);
     }
 
     internal void Attack()
