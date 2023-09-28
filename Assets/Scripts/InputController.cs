@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    SpriteRenderer sr;
-    Vector2 speed = new Vector2(50, 50);
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer sr;
+    int speed = 5;
 
 
     // Start is called before the first frame update
@@ -13,7 +13,7 @@ public class InputController : MonoBehaviour
     {
         //Debug.Log("Start");
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -21,27 +21,17 @@ public class InputController : MonoBehaviour
         Flip();
     }
 
-    private void FixedUpdate()
-    {
-        /*
-        //GetKeyCode();
-        Vector3 move = new Vector3(dirX * speed.x, dirY * speed.y, 0);
-
-        move *= Time.deltaTime;
-
-        rb.transform.Translate(move);
-        */
-    }
-
     void Flip()
     {
         if (rb.velocity.x < 0)
         {
-            sr.flipX = false;
+            //sr.flipX = true;
+            transform.localScale = new Vector3(1,1,1);
         }
         if (rb.velocity.x > 0)
         {
-            sr.flipX = true;
+            //sr.flipX = false;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
@@ -56,16 +46,23 @@ public class InputController : MonoBehaviour
         }
     }
 
-    internal void Jump()
+    internal void Jump(int force)
     {
         Debug.Log("Jump !");
+        rb.AddForce(new Vector2(0, force));
     }
-
+    /*
     internal void Movement(float v1, float v2)
     {
         Vector3 move = new Vector3(v1 * speed.x, v2 * speed.y, 0);
         move *= Time.deltaTime;
-        rb.transform.Translate(move);
+        transform.Translate(move);
+    }
+    */
+
+    internal void Move(int direction)
+    {
+        rb.velocity = new Vector2(speed * direction, rb.velocity.y);
     }
 
     internal void Attack()
