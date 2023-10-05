@@ -5,7 +5,10 @@ public class InputController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [SerializeField] SpriteRenderer sr;
-    int speed = 5;
+    [SerializeField] private int maxJump = 2;
+    [SerializeField] private float maxSlope = 0.8f;
+    private int speed = 5;
+    private int nbJump = 0;
 
 
     // Start is called before the first frame update
@@ -48,8 +51,18 @@ public class InputController : MonoBehaviour
 
     internal void Jump(int force)
     {
-        Debug.Log("Jump !");
-        rb.AddForce(new Vector2(0, force));
+        if(nbJump++ < maxJump) 
+        {
+            rb.AddForce(new Vector2(0, force));
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.contacts[0].normal.y > maxSlope)
+        {
+            nbJump = 0;
+        }
     }
     /*
     internal void Movement(float v1, float v2)
@@ -63,10 +76,5 @@ public class InputController : MonoBehaviour
     internal void Move(int direction)
     {
         rb.velocity = new Vector2(speed * direction, rb.velocity.y);
-    }
-
-    internal void Attack()
-    {
-        Debug.Log("Piou piou");
     }
 }
