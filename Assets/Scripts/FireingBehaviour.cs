@@ -10,4 +10,9 @@ public class FireingBehaviour : MonoBehaviour
         Debug.Log("Piou piou !" + gameObject.name);
         Instantiate(projectilePrefab, projectileFirePoint.position, Quaternion.identity);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 }

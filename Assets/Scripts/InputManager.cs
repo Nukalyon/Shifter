@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    //
     [Header("KeyCode Parameters")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
@@ -32,10 +31,20 @@ public class InputManager : MonoBehaviour
 
     public void Jump()
     {
+
+
+
         if(Input.GetKeyDown(jumpKey) || Input.GetKeyDown(upKey))
         {
             //Jump!
             player.Jump(jumpForce);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.contacts[0].normal.y > 0.7f)
+        {
+            nombreSautsActuel = 0;
         }
     }
 
