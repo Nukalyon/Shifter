@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
+    private Rigidbody2D rb;
     [SerializeField] SpriteRenderer sr;
     [SerializeField] private int maxJump = 2;
     [SerializeField] private float maxSlope = 0.8f;
@@ -38,17 +38,6 @@ public class InputController : MonoBehaviour
         }
     }
 
-    private void GetKeyCode()
-    {
-        foreach (KeyCode vKey in Enum.GetValues(typeof(KeyCode)))
-        {
-            if (Input.GetKeyDown(vKey))
-            {
-                Debug.Log("Pressed " + vKey.ToString());
-            }
-        }
-    }
-
     internal void Jump(int force)
     {
         if(nbJump++ < maxJump) 
@@ -64,14 +53,6 @@ public class InputController : MonoBehaviour
             nbJump = 0;
         }
     }
-    /*
-    internal void Movement(float v1, float v2)
-    {
-        Vector3 move = new Vector3(v1 * speed.x, v2 * speed.y, 0);
-        move *= Time.deltaTime;
-        transform.Translate(move);
-    }
-    */
 
     internal void Move(int direction)
     {
