@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     [Header("Object References")]
     [SerializeField] private InputController player;
     [SerializeField] private FireingBehaviour projectile;
+    [SerializeField] private Transform projectileFirePoint;
 
 
     // Update is called once per frame
@@ -41,20 +42,20 @@ public class InputManager : MonoBehaviour
 
     public void Movement()
     {
-        if(Input.GetKeyDown(rightKey))
+        if(Input.GetKey(rightKey))
         {
             player.Move(1);
+            projectileFirePoint.transform.localScale = new Vector3(1, 0, 0);
         }
-        else if (Input.GetKeyDown(leftKey))
+        else if (Input.GetKey(leftKey))
         {
             player.Move(-1);
+            projectileFirePoint.transform.localScale = new Vector3(-1, 0, 0);
         }
-        /*
         else
         {
             player.Move(0);
         }
-        */
         /*
         float dirX = Input.GetAxisRaw(axisX);
         float dirY = Input.GetAxisRaw(axisY);
