@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
@@ -69,4 +70,6 @@ public class InputController : MonoBehaviour
     {
         Debug.Log("Piou piou");
     }
+
+
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,5 +16,19 @@ public class MenuController : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Application closed.");
+    }
+
+    public void Escape()
+    {
+        Time.timeScale = 0;
+        SceneManager.LoadScene("PauseMenu", LoadSceneMode.Single);
+        Debug.Log("Application paused.");
+    }
+
+    internal void Resume()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        Debug.Log("Application resumed.");
     }
 }
