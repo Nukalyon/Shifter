@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -8,9 +9,10 @@ public class InputManager : MonoBehaviour
     [Header("KeyCode Parameters")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
-    [SerializeField] private KeyCode leftKey = KeyCode.Q;
+    [SerializeField] private KeyCode leftKey = KeyCode.A;
     [SerializeField] private KeyCode rightKey = KeyCode.D;
-    [SerializeField] private KeyCode upKey = KeyCode.Z;
+    [SerializeField] private KeyCode upKey = KeyCode.W;
+    [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
     [SerializeField] private int jumpForce = 5;
     /*
     [SerializeField] private KeyCode botKey = KeyCode.S; 
@@ -33,10 +35,6 @@ public class InputManager : MonoBehaviour
 
     public void Jump()
     {
-
-
-
-
         if(Input.GetKeyDown(jumpKey) || Input.GetKeyDown(upKey))
         {
             //Jump!
@@ -73,6 +71,15 @@ public class InputManager : MonoBehaviour
         if(Input.GetKeyDown(shootKey)) 
         {
             projectile.FireProjectile();
+        }
+    }
+
+    public void Escape(string pauseScene)
+    {
+        if (Input.GetKeyDown(pauseKey))
+        {
+            SceneManager.LoadScene(pauseScene);
+            Debug.Log("Pause scene loaded.");
         }
     }
 
