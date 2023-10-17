@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+
     [Header("KeyCode Parameters")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
@@ -18,6 +19,7 @@ public class InputManager : MonoBehaviour
     [Header("Object References")]
     [SerializeField] private InputController player;
     [SerializeField] private FireingBehaviour projectile;
+    [SerializeField] private Transform projectileFirePoint;
 
 
     // Update is called once per frame
@@ -30,43 +32,29 @@ public class InputManager : MonoBehaviour
 
     public void Jump()
     {
-<<<<<<< Updated upstream
-
-
-
-        if(Input.GetKeyDown(jumpKey) || Input.GetKeyDown(upKey))
-=======
         if(Input.GetKeyDown(jumpKey))
->>>>>>> Stashed changes
         {
             //Jump!
             player.Jump(jumpForce);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.contacts[0].normal.y > 0.7f)
-        {
-            nombreSautsActuel = 0;
-        }
-    }
 
     public void Movement()
     {
-        if(Input.GetKeyDown(rightKey))
+        if(Input.GetKey(rightKey))
         {
             player.Move(1);
+            projectileFirePoint.transform.localScale = new Vector3(1, 0, 0);
         }
-        else if (Input.GetKeyDown(leftKey))
+        else if (Input.GetKey(leftKey))
         {
             player.Move(-1);
+            projectileFirePoint.transform.localScale = new Vector3(-1, 0, 0);
         }
-        /*
         else
         {
             player.Move(0);
         }
-        */
         /*
         float dirX = Input.GetAxisRaw(axisX);
         float dirY = Input.GetAxisRaw(axisY);
