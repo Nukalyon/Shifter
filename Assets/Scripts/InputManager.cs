@@ -8,8 +8,9 @@ public class InputManager : MonoBehaviour
     [Header("KeyCode Parameters")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
-    [SerializeField] private KeyCode leftKey = KeyCode.A;
+    [SerializeField] private KeyCode leftKey = KeyCode.Q;
     [SerializeField] private KeyCode rightKey = KeyCode.D;
+    [SerializeField] private KeyCode upKey = KeyCode.Z;
     [SerializeField] private int jumpForce = 5;
     /*
     [SerializeField] private KeyCode botKey = KeyCode.S; 
@@ -32,7 +33,11 @@ public class InputManager : MonoBehaviour
 
     public void Jump()
     {
-        if(Input.GetKeyDown(jumpKey))
+
+
+
+
+        if(Input.GetKeyDown(jumpKey) || Input.GetKeyDown(upKey))
         {
             //Jump!
             player.Jump(jumpForce);
