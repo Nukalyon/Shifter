@@ -72,7 +72,7 @@ public class BulletBehaviour : MonoBehaviour
 
     private void SetDestroyTime()
     {
-        Destroy(rb, destroyTime);
+        Destroy(gameObject, destroyTime);
     }
 
     private void InitializeBulletStats()

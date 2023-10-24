@@ -28,7 +28,9 @@ public class AimHandler : MonoBehaviour
     {
         //rotate de gun towards mouse position
         worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        direction = (worldPos - (Vector2)weapon.transform.position).normalized;
+        direction = worldPos - (Vector2)weapon.transform.position;
+        float dist = direction.magnitude;
+        direction = direction.normalized;
         weapon.transform.right = direction;
 
         //flip the gun when it reaches a 90° threshold
@@ -36,13 +38,13 @@ public class AimHandler : MonoBehaviour
 
         Vector3 localScale = weapon.transform.localScale;
         //Vector3 localScale = new Vector3(1f,1f,1f);
-        if (angle > 90 || angle < -90)
+        if (weapon.transform.localEulerAngles.z > 90 || weapon.transform.localEulerAngles.z < -90)
         {
-            localScale.y *= -1f;
+            localScale.y = -Mathf.Abs(localScale.y);
         }
         else
         {
-            localScale.y *= 1f;
+            localScale.y = Mathf.Abs(localScale.y);
         }
         weapon.transform.localScale = localScale;
     }

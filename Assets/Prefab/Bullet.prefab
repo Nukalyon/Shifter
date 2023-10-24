@@ -139,8 +139,10 @@ MonoBehaviour:
     m_Bits: 72
   destroyTime: 1
   normalBulletSpeed: 15
+  normalBulletDamage: 2
   physicsBulletSpeed: 17.5
   physicsBulletGravity: 3
+  physicsBulletDamage: 2
   bulletType: 1
 --- !u!50 &-3458938966741419272
 Rigidbody2D:
