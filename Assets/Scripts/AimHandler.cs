@@ -12,7 +12,7 @@ public class AimHandler : MonoBehaviour
 
     private Vector2 worldPos;
     private Vector2 direction;
-    private float angle;
+    [SerializeField] private float angle;
 
     // Update is called once per frame
     void Update()
@@ -34,15 +34,15 @@ public class AimHandler : MonoBehaviour
         //flip the gun when it reaches a 90° threshold
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        Vector3 localScale = Vector3.one;
+        Vector3 localScale = weapon.transform.localScale;
         //Vector3 localScale = new Vector3(1f,1f,1f);
         if (angle > 90 || angle < -90)
         {
-            localScale.y = -1f;
+            localScale.y *= -1f;
         }
         else
         {
-            localScale.y = 1f;
+            localScale.y *= 1f;
         }
         weapon.transform.localScale = localScale;
     }

@@ -68,7 +68,7 @@ public class InputManager : MonoBehaviour
     {
         if(Input.GetKeyDown(shootKey)) 
         {
-            projectile.FireProjectile();
+            //projectile.FireProjectile();
         }
     }
 
