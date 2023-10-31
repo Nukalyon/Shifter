@@ -9,8 +9,9 @@ using UnityEngine.UIElements;
 public class MenuController : MonoBehaviour
 {
     public static bool gameIsPaused = false;
-    [SerializeField] public GameObject pauseMenuUI; 
-    
+    //[SerializeField] public GameObject pauseMenuUI;
+    [SerializeField] Transform UIPanel;
+
     public void changeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -32,7 +33,7 @@ public class MenuController : MonoBehaviour
     {
         //changeScene("PauseMenu"/*, LoadSceneMode.Single*/);
         
-        pauseMenuUI.SetActive(true);
+        UIPanel.gameObject.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
         
@@ -43,7 +44,8 @@ public class MenuController : MonoBehaviour
     {
         //SceneManager.LoadScene("SampleScene"/*, LoadSceneMode.Single*/);
 
-        pauseMenuUI.SetActive(false);
+        UIPanel.gameObject.SetActive(false);
+        //pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
 
