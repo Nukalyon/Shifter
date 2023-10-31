@@ -4,9 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
+    private Rigidbody2D rb;
     [SerializeField] SpriteRenderer sr;
-    int speed = 5;
+    [SerializeField] private int maxJump = 2;
+    [SerializeField] private float maxSlope = 0.8f;
+    private int speed = 5;
+    private int nbJump = 0;
 
 
     // Start is called before the first frame update
@@ -24,52 +27,36 @@ public class InputController : MonoBehaviour
 
     void Flip()
     {
-        if (rb.velocity.x < 0)
+        if (rb.velocity.x > 0)
         {
             //sr.flipX = true;
             transform.localScale = new Vector3(1,1,1);
         }
-        if (rb.velocity.x > 0)
+        if (rb.velocity.x < 0)
         {
             //sr.flipX = false;
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
-    private void GetKeyCode()
+    internal void Jump(int force)
     {
-        foreach (KeyCode vKey in Enum.GetValues(typeof(KeyCode)))
+        if(nbJump++ < maxJump) 
         {
-            if (Input.GetKeyDown(vKey))
-            {
-                Debug.Log("Pressed " + vKey.ToString());
-            }
+            rb.AddForce(new Vector2(0, force));
         }
     }
 
-    internal void Jump(int force)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Jump !");
-        rb.AddForce(new Vector2(0, force));
+        if (collision.contacts[0].normal.y > maxSlope)
+        {
+            nbJump = 0;
+        }
     }
-    /*
-    internal void Movement(float v1, float v2)
-    {
-        Vector3 move = new Vector3(v1 * speed.x, v2 * speed.y, 0);
-        move *= Time.deltaTime;
-        transform.Translate(move);
-    }
-    */
 
     internal void Move(int direction)
     {
         rb.velocity = new Vector2(speed * direction, rb.velocity.y);
     }
-
-    internal void Attack()
-    {
-        Debug.Log("Piou piou");
-    }
-
-
 }
