@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
@@ -58,4 +59,14 @@ public class InputController : MonoBehaviour
     {
         rb.velocity = new Vector2(speed * direction, rb.velocity.y);
     }
+<<<<<<< HEAD
+=======
+
+    internal void Attack()
+    {
+        Debug.Log("Piou piou");
+    }
+
+
+>>>>>>> albert
 }

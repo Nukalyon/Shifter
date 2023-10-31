@@ -11,12 +11,21 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
+<<<<<<< HEAD
   - Ground
   - Water
   - UI
   - Enemy
   - Ally
   - PlayerProjectile
+=======
+  - Ally
+  - Water
+  - UI
+  - Enemy
+  - 
+  - 
+>>>>>>> albert
   - 
   - 
   - 

@@ -1,16 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
+    private enum SceneState
+    {
+        gameActive,
+        gamePaused
+    }
+
+    private SceneState state = SceneState.gameActive;
+    private bool showMenu = false;
 
     [Header("KeyCode Parameters")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
-    [SerializeField] private KeyCode leftKey = KeyCode.Q;
+    [SerializeField] private KeyCode leftKey = KeyCode.A;
     [SerializeField] private KeyCode rightKey = KeyCode.D;
-    [SerializeField] private KeyCode upKey = KeyCode.Z;
+    [SerializeField] private KeyCode upKey = KeyCode.W;
+    [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
+
     [SerializeField] private int jumpForce = 5;
     /*
     [SerializeField] private KeyCode botKey = KeyCode.S; 
@@ -22,6 +34,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] private FireingBehaviour projectile;
     [SerializeField] private Transform projectileFirePoint;
 
+    [Header("Scene manager")]
+    [SerializeField] private MenuController menu;
 
     // Update is called once per frame
     void Update()
@@ -29,6 +43,28 @@ public class InputManager : MonoBehaviour
         Jump();
         Movement();
         Attack();
+        ChangeScene();
+    }
+
+    private void ChangeScene()
+    {
+        if (Input.GetKeyDown(pauseKey) && state == SceneState.gameActive)
+        {
+            menu.Escape();
+            showMenu = true;
+            Time.timeScale = 0;
+            state = SceneState.gamePaused;
+            Debug.Log("Pause scene loaded.");
+            
+}
+        if (Input.GetKeyDown(pauseKey) && state == SceneState.gamePaused)
+        {
+            menu.Resume();
+            showMenu = false;
+            state = SceneState.gameActive;
+            Debug.Log("Game resumed.");
+            
+        }
     }
 
     public void Jump()
@@ -71,5 +107,4 @@ public class InputManager : MonoBehaviour
             //projectile.FireProjectile();
         }
     }
-
 }

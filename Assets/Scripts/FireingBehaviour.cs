@@ -45,4 +45,9 @@ public class FireingBehaviour : MonoBehaviour
             time += timeBetweenPoints;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 }
