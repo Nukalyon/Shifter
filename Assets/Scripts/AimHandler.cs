@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class AimHandler : MonoBehaviour
 {
-    const float MAX_UP_ANGLE = 90f;
-    const float MAX_DOWN_ANGLE = -90f;
     [SerializeField] private GameObject weapon;
     private SpriteRenderer weaponRenderer;
     [SerializeField] private GameObject bullet;
@@ -52,13 +50,11 @@ public class AimHandler : MonoBehaviour
         //Switch sur la localScale du jour pour savoir si flip ou pas -> gere l'angle
         switch(parent.transform.localScale.x)
         {
-            //Joueur vers la droite
             case 1:
-                //RotationPlayerNotFlipped(ref localScale);
+                RotationPlayerNotFlipped(ref localScale);
                 break;
-            //Joueur vers la gauche
             case -1:
-                //RotationPlayerFlipped(ref localScale);
+                RotationPlayerFlipped(ref localScale);
                 break;
             default:
                 break;
@@ -73,7 +69,7 @@ public class AimHandler : MonoBehaviour
         float newX = bulletSpawnPoint.transform.position.x;
         float newY = bulletSpawnPoint.transform.position.y;
         //bulletSpawnPoint.transform.position = new Vector2(-Mathf.Abs(newX), newY);
-        if (weapon.transform.localEulerAngles.z > MAX_UP_ANGLE && weapon.transform.localEulerAngles.z < MAX_DOWN_ANGLE)
+        if (weapon.transform.localEulerAngles.z > 90 || weapon.transform.localEulerAngles.z < -90)
         {
             localScale.y = -Mathf.Abs(localScale.y);
         }
@@ -90,10 +86,9 @@ public class AimHandler : MonoBehaviour
         float newX = bulletSpawnPoint.transform.position.x;
         float newY = bulletSpawnPoint.transform.position.y;
         //bulletSpawnPoint.transform.position = new Vector2(Mathf.Abs(newX), newY);
-        if (weapon.transform.localEulerAngles.z > MAX_UP_ANGLE && weapon.transform.localEulerAngles.z < MAX_DOWN_ANGLE)
+        if (weapon.transform.localEulerAngles.z > 90 || weapon.transform.localEulerAngles.z < -90)
         {
             localScale.y = -Mathf.Abs(localScale.y);
-            //bulletSpawnPoint.position = new Vector3(-newX, newY, weapon.transform.position.z);
         }
         else
         {

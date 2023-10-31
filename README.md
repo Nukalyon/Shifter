@@ -6,7 +6,7 @@ flaques avec buff / nerf
 
 Fin -> Glissade sur peinture
 
-##Tâche 2 - 10 Octobre
+##10 Octobre - Tâche 2
 - Collectible (Teintures)
 		- Art
 		- Collectible
@@ -15,6 +15,7 @@ Fin -> Glissade sur peinture
 		- Character
 		- Camera
 		- Control
+
 - Mechanic Principal
 
 
@@ -22,9 +23,3 @@ Fin -> Glissade sur peinture
 - Build
 - Menu Principal
 - Menu Pause
-
-
-##Tâche 4 - 14 Novembre
-- Game Feel "Juice"
-- Systems Particules
-- ?????
