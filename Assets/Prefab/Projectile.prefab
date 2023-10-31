@@ -12,13 +12,8 @@ GameObject:
   - component: {fileID: 4559232431262905183}
   - component: {fileID: 5786817345933022130}
   - component: {fileID: 175759502034023810}
-<<<<<<< HEAD
   - component: {fileID: 7787612484243888264}
   m_Layer: 0
-=======
-  - component: {fileID: 5591368963663489914}
-  m_Layer: 3
->>>>>>> albert
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,17 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31c1797fc0232048b1c273563a4250a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   vitesse: 10
   lifetime: 2
   damage: 5
 --- !u!50 &7787612484243888264
-=======
-  vitesse: 0
-  lifetime: 5
-  degats: 5
---- !u!50 &5591368963663489914
->>>>>>> albert
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -164,11 +152,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-<<<<<<< HEAD
   m_GravityScale: 0
-=======
-  m_GravityScale: 1
->>>>>>> albert
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
