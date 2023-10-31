@@ -13,7 +13,6 @@ public class InputManager : MonoBehaviour
     }
 
     private SceneState state = SceneState.gameActive;
-    private bool showMenu = false;
 
     [Header("KeyCode Parameters")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
@@ -37,6 +36,11 @@ public class InputManager : MonoBehaviour
     [Header("Scene manager")]
     [SerializeField] private MenuController menu;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -51,19 +55,14 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(pauseKey) && state == SceneState.gameActive)
         {
             menu.Escape();
-            showMenu = true;
-            Time.timeScale = 0;
             state = SceneState.gamePaused;
             Debug.Log("Pause scene loaded.");
-            
-}
-        if (Input.GetKeyDown(pauseKey) && state == SceneState.gamePaused)
+        }
+        else if (Input.GetKeyDown(pauseKey) && state == SceneState.gamePaused)
         {
             menu.Resume();
-            showMenu = false;
             state = SceneState.gameActive;
             Debug.Log("Game resumed.");
-            
         }
     }
 
