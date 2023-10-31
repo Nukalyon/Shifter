@@ -1,12 +1,12 @@
 # Shifter
 Plateformer 2D
-Pistolet à peinture
-Porte avec une serrure d'une couleur pour repeindre la porte si couleur débloquée / collectée
+Pistolet Ã  peinture
+Porte avec une serrure d'une couleur pour repeindre la porte si couleur dÃ©bloquÃ©e / collectÃ©e
 flaques avec buff / nerf
 
 Fin -> Glissade sur peinture
 
-##10 Octobre - Tâche 2
+##TÃ¢che 2 - 10 Octobre
 - Collectible (Teintures)
 		- Art
 		- Collectible
@@ -15,5 +15,16 @@ Fin -> Glissade sur peinture
 		- Character
 		- Camera
 		- Control
-
 - Mechanic Principal
+
+
+##TÃ¢che 3 - 07 Novembre
+- Build
+- Menu Principal
+- Menu Pause
+
+
+##TÃ¢che 4 - 14 Novembre
+- Game Feel "Juice"
+- Systems Particules
+- ?????

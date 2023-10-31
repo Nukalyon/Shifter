@@ -26,12 +26,12 @@ public class InputController : MonoBehaviour
 
     void Flip()
     {
-        if (rb.velocity.x < 0)
+        if (rb.velocity.x > 0)
         {
             //sr.flipX = true;
             transform.localScale = new Vector3(1,1,1);
         }
-        if (rb.velocity.x > 0)
+        if (rb.velocity.x < 0)
         {
             //sr.flipX = false;
             transform.localScale = new Vector3(-1, 1, 1);
