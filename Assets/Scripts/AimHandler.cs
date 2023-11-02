@@ -64,6 +64,7 @@ public class AimHandler : MonoBehaviour
 
     private void RotationPlayerFlipped(ref Vector3 localScale)
     {
+        Debug.Log("Player flipped");
         weaponRenderer.flipX = true;
         weaponRenderer.flipY = true;
         float newX = bulletSpawnPoint.transform.position.x;
@@ -81,6 +82,7 @@ public class AimHandler : MonoBehaviour
 
     private void RotationPlayerNotFlipped(ref Vector3 localScale)
     {
+        Debug.Log("Player not flipped");
         weaponRenderer.flipX = false;
         weaponRenderer.flipY = false;
         float newX = bulletSpawnPoint.transform.position.x;

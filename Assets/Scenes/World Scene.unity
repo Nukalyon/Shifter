@@ -1483,10 +1483,12 @@ MonoBehaviour:
   leftKey: 113
   rightKey: 100
   upKey: 122
+  pauseKey: 27
   jumpForce: 400
   player: {fileID: 393912283}
   projectile: {fileID: 393912287}
   projectileFirePoint: {fileID: 390821406}
+  menu: {fileID: 0}
 --- !u!4 &1240927626
 Transform:
   m_ObjectHideFlags: 0
