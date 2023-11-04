@@ -7,11 +7,17 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
-{
-    public static bool gameIsPaused = false;
-    //public GameObject pauseMenuUI;
-    [SerializeField] Transform UIPanel;
+{   
+    Canvas canvasMenu { get; set; }
+    Canvas canvasGame { get; set; }
+    public void Start()
+    {
+        canvasGame = GameObject.Find("Canvas Game").GetComponent<Canvas>();
+        canvasMenu = GameObject.Find("Canvas Menu").GetComponent<Canvas>();
 
+        canvasMenu.gameObject.SetActive(false);
+        canvasGame.gameObject.SetActive(true);
+    }
     public void changeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -25,31 +31,29 @@ public class MenuController : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
         Debug.Log("Scene restarted.");
     }
 
     public void Escape()
     {
-        changeScene("PauseMenu"/*, LoadSceneMode.Single*/);
+        //changeScene("PauseMenu"/*, LoadSceneMode.Single*/);
+        //gameIsPaused = true;
 
-            
-        //pauseMenuUI.SetActive(true);
+        canvasMenu.gameObject.SetActive(true);
+        canvasGame.gameObject.SetActive(false);
+
         Time.timeScale = 0f;
-        UIPanel.gameObject.SetActive(true);
-        gameIsPaused = true;
 
         Debug.Log("Application paused.");
     }
 
     internal void Resume()
     {
-        SceneManager.LoadScene("SampleScene"/*, LoadSceneMode.Single*/);
+        canvasMenu.gameObject.SetActive(false);
+        canvasGame.gameObject.SetActive(true);
 
-        //pauseMenuUI.SetActive(false);
-        UIPanel.gameObject.SetActive(false);
         Time.timeScale = 1f;
-        gameIsPaused = false;
 
         Debug.Log("Application resumed.");
     }

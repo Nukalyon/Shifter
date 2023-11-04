@@ -728,7 +728,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SampleScene
+          m_StringArgument: World Scene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &591634121
@@ -2156,6 +2156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb3c8bd6bf9b5147aa34a97cab6e5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIPanel: {fileID: 74281945}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
