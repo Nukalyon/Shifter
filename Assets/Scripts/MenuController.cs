@@ -7,16 +7,16 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
-{   
-    Canvas canvasMenu { get; set; }
-    Canvas canvasGame { get; set; }
+{
+    Canvas canvasGame; //{ get; set; }
+    Canvas canvasMenu; //{ get; set; }
     public void Start()
     {
         canvasGame = GameObject.Find("Canvas Game").GetComponent<Canvas>();
         canvasMenu = GameObject.Find("Canvas Menu").GetComponent<Canvas>();
 
-        canvasMenu.gameObject.SetActive(false);
         canvasGame.gameObject.SetActive(true);
+        canvasMenu.gameObject.SetActive(false);
     }
     public void changeScene(string sceneName)
     {
@@ -40,8 +40,8 @@ public class MenuController : MonoBehaviour
         //changeScene("PauseMenu"/*, LoadSceneMode.Single*/);
         //gameIsPaused = true;
 
-        canvasMenu.gameObject.SetActive(true);
         canvasGame.gameObject.SetActive(false);
+        canvasMenu.gameObject.SetActive(true);
 
         Time.timeScale = 0f;
 
@@ -50,8 +50,8 @@ public class MenuController : MonoBehaviour
 
     internal void Resume()
     {
-        canvasMenu.gameObject.SetActive(false);
         canvasGame.gameObject.SetActive(true);
+        canvasMenu.gameObject.SetActive(false);
 
         Time.timeScale = 1f;
 
