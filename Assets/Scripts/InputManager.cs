@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour
         {
             menu.Resume();
             state = SceneState.gameActive;
-            Debug.Log("Game resumed.");
+            Debug.Log("Game scene loaded.");
         }
     }
 

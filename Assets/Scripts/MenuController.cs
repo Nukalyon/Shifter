@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -31,7 +32,7 @@ public class MenuController : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene(1);
+        changeScene("World Scene");
         Debug.Log("Scene restarted.");
     }
 
@@ -48,7 +49,7 @@ public class MenuController : MonoBehaviour
         Debug.Log("Application paused.");
     }
 
-    internal void Resume()
+    public void Resume()
     {
         canvasGame.gameObject.SetActive(true);
         canvasMenu.gameObject.SetActive(false);
