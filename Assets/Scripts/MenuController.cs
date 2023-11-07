@@ -64,7 +64,7 @@ public class MenuController : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        Debug.Log("Pause menu loaded.");
+        Debug.Log("Pause menu loaded (Game paused).");
     }
 
     public void Resume()
@@ -74,7 +74,7 @@ public class MenuController : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        Debug.Log("Game resumed.");
+        Debug.Log("Pause menu hidden (Game resumed).");
     }
 
 
