@@ -9,6 +9,8 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private AudioManager manager;
+
     [Header("General Bullet Stats")]
     [SerializeField] private LayerMask whatDestroyBullet;
     [SerializeField] private float destroyTime = 2;
@@ -34,11 +36,11 @@ public class BulletBehaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        manager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         SetDestroyTime();
 
         //Change rb stats based on bullet type
         SetRbStats();
-
 
         //Set velocity based on bullet type
         InitializeBulletStats();
@@ -102,6 +104,7 @@ public class BulletBehaviour : MonoBehaviour
         {
             //Spawn particules
             //Play sound FX
+            manager.PlaySong("splash"); 
             //Screenshake
             //Damage enemy
             IDamageable damageable = collision.GetComponent<IDamageable>();

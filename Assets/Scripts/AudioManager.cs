@@ -36,12 +36,15 @@ public class AudioManager : MonoBehaviour
             case "iceball":
                 PlaySongs(1);
                 break;
+            case "splash":
+                PlaySongs(2);
+                break;
         }
     }
 
     public void PlaySongs(int index)
     {
-        foreach(UnityEngine.AudioSource source in audioSources)
+        foreach(AudioSource source in audioSources)
         {
             if(!source.isPlaying)
             {
@@ -52,12 +55,12 @@ public class AudioManager : MonoBehaviour
         }
 
         //Create AudioSource
-        UnityEngine.AudioSource sr = CreateAudioSource();
+        AudioSource sr = CreateAudioSource();
         sr.clip = soundEffects[index];
         sr.Play();
     }
 
-    private UnityEngine.AudioSource CreateAudioSource()
+    private AudioSource CreateAudioSource()
     {
         //Creer un nouveau objet
         GameObject go = new GameObject();
@@ -65,7 +68,7 @@ public class AudioManager : MonoBehaviour
         go.transform.parent = this.transform;
 
         //AJoute l'audiosource
-        UnityEngine.AudioSource ausr =  go.AddComponent<UnityEngine.AudioSource>();
+        AudioSource ausr =  go.AddComponent<AudioSource>();
         audioSources.Add(ausr);
         return ausr;
     }
