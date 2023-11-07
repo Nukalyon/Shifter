@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,15 +10,35 @@ using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
 {
-    Canvas canvasGame; //{ get; set; }
-    Canvas canvasMenu; //{ get; set; }
-    public void Start()
-    {
-        canvasGame = GameObject.Find("Canvas Game").GetComponent<Canvas>();
-        canvasMenu = GameObject.Find("Canvas Menu").GetComponent<Canvas>();
+    public GameObject gameObjectGame; //{ get; set; }
+    public GameObject gameObjectMenu; //{ get; set; }
 
-        canvasGame.gameObject.SetActive(true);
-        canvasMenu.gameObject.SetActive(false);
+    public static MenuController Singleton;
+    public void Awake()
+    {
+        //gameObjectGame = GameObject.Find("Canvas Game").GetComponent<Canvas>();
+        //gameObjectMenu = GameObject.Find("Canvas Menu").GetComponent<Canvas>();
+
+        if (!Singleton)
+        { 
+            Singleton = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        if(gameObjectGame == null || gameObjectMenu == null)
+        {
+            Debug.LogError("Canvas components not found.");
+        }
+        else
+        {
+            gameObjectGame.SetActive(true);
+            gameObjectMenu.SetActive(false);
+        }
+
     }
     public void changeScene(string sceneName)
     {
@@ -38,25 +59,22 @@ public class MenuController : MonoBehaviour
 
     public void Escape()
     {
-        //changeScene("PauseMenu"/*, LoadSceneMode.Single*/);
-        //gameIsPaused = true;
-
-        canvasGame.gameObject.SetActive(false);
-        canvasMenu.gameObject.SetActive(true);
+        gameObjectGame.SetActive(false);
+        gameObjectMenu.SetActive(true);
 
         Time.timeScale = 0f;
 
-        Debug.Log("Application paused.");
+        Debug.Log("Pause menu loaded.");
     }
 
     public void Resume()
     {
-        canvasGame.gameObject.SetActive(true);
-        canvasMenu.gameObject.SetActive(false);
+        gameObjectGame.SetActive(true);
+        gameObjectMenu.SetActive(false);
 
         Time.timeScale = 1f;
 
-        Debug.Log("Application resumed.");
+        Debug.Log("Game resumed.");
     }
 
 
