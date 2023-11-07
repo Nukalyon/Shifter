@@ -1,3 +1,4 @@
+using InguzPings;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     private Rigidbody2D rb;
     private AudioManager manager;
+    [SerializeField]private ParticleSystem particle;
 
     [Header("General Bullet Stats")]
     [SerializeField] private LayerMask whatDestroyBullet;
@@ -103,6 +105,7 @@ public class BulletBehaviour : MonoBehaviour
         if((whatDestroyBullet.value & (1 << collision.gameObject.layer)) > 0)
         {
             //Spawn particules
+            Instantiate(particle, transform.position, Quaternion.identity);
             //Play sound FX
             manager.PlaySong("splash"); 
             //Screenshake

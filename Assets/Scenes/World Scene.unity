@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1622616340}
-  bullet: {fileID: 742560545143242508, guid: 3fd5944fa4ff03a41be06d179513d1ec, type: 3}
+  bullet: {fileID: 7492172802222276156, guid: b261b9a1729bf1e49beb991dc52471c3, type: 3}
   bulletSpawnPoint: {fileID: 390821406}
   angle: 0
 --- !u!1 &519420028
@@ -1683,6 +1683,55 @@ Transform:
   m_LocalPosition: {x: -7.4874, y: -2.9353, z: 0}
   m_LocalScale: {x: 0.5452, y: 0.7094, z: 1}
   m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &806676432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806676434}
+  - component: {fileID: 806676433}
+  m_Layer: 0
+  m_Name: Animation Helper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &806676433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806676432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1080b9bcefba66b40b45ee7eb02e32df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  INFINITE_LOOP: 1
+  duration: 5.5
+  DESTROY_ON_END: 1
+  all_particles:
+  - {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
+--- !u!4 &806676434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806676432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.387711, y: 1.2515656, z: 8.232263}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2450,3 +2499,4 @@ SceneRoots:
   - {fileID: 158216451}
   - {fileID: 1240927626}
   - {fileID: 1637337075}
+  - {fileID: 806676434}
