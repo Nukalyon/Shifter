@@ -10,8 +10,10 @@ using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
 {
-    public GameObject gameObjectGame; //{ get; set; }
-    public GameObject gameObjectMenu; //{ get; set; }
+    public InputController InputController;
+    public Health Health;
+    public GameObject gameObjectGame;
+    public GameObject gameObjectMenu;
 
     public static MenuController Singleton;
     public void Awake()
@@ -46,18 +48,25 @@ public class MenuController : MonoBehaviour
         Debug.Log("Changed scene.");
     }
 
-    public void Quit()
+    public void OnLeaveButtonClick()
     {
         Application.Quit();
         Debug.Log("Application closed.");
     }
-    public void Restart()
+    public void OnRestartButtonClick()
     {
-        changeScene("World Scene");
+        Time.timeScale = 1f;
+
+        InputController.ResetPosition();
+        Health.RegenMaxHealth();
+
+        gameObjectGame.SetActive(true);
+        gameObjectMenu.SetActive(false);
+
         Debug.Log("Scene restarted.");
     }
 
-    public void Escape()
+    public void OnEscapeButtonClick()
     {
         gameObjectGame.SetActive(false);
         gameObjectMenu.SetActive(true);
@@ -67,7 +76,7 @@ public class MenuController : MonoBehaviour
         Debug.Log("Pause menu loaded (Game paused).");
     }
 
-    public void Resume()
+    public void OnResumeButtonClick()
     {
         gameObjectGame.SetActive(true);
         gameObjectMenu.SetActive(false);

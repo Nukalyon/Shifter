@@ -6,6 +6,8 @@ public class InputController : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] SpriteRenderer sr;
+    private Vector3 initialPosition;
+
     [SerializeField] private int maxJump = 2;
     [SerializeField] private float maxSlope = 0.8f;
     private int speed = 5;
@@ -13,11 +15,23 @@ public class InputController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //Debug.Log("Start");
+        //DontDestroyOnLoad(this.gameObject);
+
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        initialPosition = transform.position;
+
+        //if (rb == null || sr == null)
+        //{
+        //    Debug.Log("Rigbody components have been destroyed...");
+        //}
+        //else
+        //{
+        //    rb = GetComponent<Rigidbody2D>();
+        //    sr = GetComponentInChildren<SpriteRenderer>();
+        //}
     }
 
     private void Update()
@@ -58,5 +72,9 @@ public class InputController : MonoBehaviour
     internal void Move(int direction)
     {
         rb.velocity = new Vector2(speed * direction, rb.velocity.y);
+    }
+    public void ResetPosition()
+    {
+        transform.position = initialPosition;
     }
 }

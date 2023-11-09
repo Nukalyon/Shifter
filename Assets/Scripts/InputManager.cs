@@ -35,6 +35,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Transform projectileFirePoint;
 
 
+
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -53,12 +54,12 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(pauseKey) && state == SceneState.gameActive)
         {
-            MenuController.Singleton.Escape();
+            MenuController.Singleton.OnEscapeButtonClick();
             state = SceneState.gamePaused;
         }
         else if (Input.GetKeyDown(pauseKey) && state == SceneState.gamePaused)
         {
-            MenuController.Singleton.Resume();
+            MenuController.Singleton.OnResumeButtonClick();
             state = SceneState.gameActive;
         }
     }
@@ -103,4 +104,5 @@ public class InputManager : MonoBehaviour
             //projectile.FireProjectile();
         }
     }
+
 }
