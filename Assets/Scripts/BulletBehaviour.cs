@@ -105,10 +105,12 @@ public class BulletBehaviour : MonoBehaviour
         if((whatDestroyBullet.value & (1 << collision.gameObject.layer)) > 0)
         {
             //Spawn particules
-            Instantiate(particle, transform.position, Quaternion.identity);
+            ParticleSystem particule = Instantiate(particle, transform.position, Quaternion.identity);
+            Destroy(particule, 2);
             //Play sound FX
-            manager.PlaySong("splash"); 
+            manager.PlaySong("splash");
             //Screenshake
+            //CameraShake.instance.ShakeCamera(2, 10);
             //Damage enemy
             IDamageable damageable = collision.GetComponent<IDamageable>();
             if(damageable != null)
