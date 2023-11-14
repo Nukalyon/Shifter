@@ -7,8 +7,6 @@ public class AimHandler : MonoBehaviour
 {
     [SerializeField] private GameObject weapon;
     private SpriteRenderer weaponRenderer;
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform bulletSpawnPoint;
     private Transform parent;
 
     private GameObject bulletInst;
@@ -17,7 +15,16 @@ public class AimHandler : MonoBehaviour
     [SerializeField] private float angle;
 
     [Header("Trajectory Elements")]
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private LineRenderer trajectory;
+
+    [SerializeField] private float launchForce = 1f;
+    [SerializeField] private float trajectoryTimeStep = 0.05f;
+    [SerializeField] private int trajectoryStepCount = 50;
+
+    Vector2 velocity, startMousePos, currentMousePos;
+
 
 
     private void Start()
@@ -30,6 +37,18 @@ public class AimHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        if(Input.GetMouseButtonDown(0))
+        {
+            startMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        if(Input.GetMouseButton(0))
+        {
+            //currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            velocity = (startMousePos - (Vector2)weapon.transform.position) * launchForce;
+            DrawTrajectory();
+        }
+        */
         HandleGunRotation();
         HandleGunShooting();
     }
@@ -110,5 +129,21 @@ public class AimHandler : MonoBehaviour
             //spawn bullet
             bulletInst = Instantiate(bullet, bulletSpawnPoint.position, weapon.transform.rotation);
         }
+    }
+
+    /*  REFERENCE
+     * https://www.youtube.com/watch?v=IJLRXbSug38&t=209s&ab_channel=LevelUp
+     */
+    private void DrawTrajectory()
+    {
+        Vector3[] positions = new Vector3[trajectoryStepCount];
+        for(int i = 0; i < trajectoryStepCount; i++)
+        {
+            float t = i * trajectoryTimeStep;
+            Vector3 pos = (Vector2)bulletSpawnPoint.position + velocity * t + 0.5f * Physics2D.gravity* t * t;
+            positions[i] = pos;
+        }
+        trajectory.positionCount = trajectoryStepCount;
+        trajectory.SetPositions(positions);
     }
 }
