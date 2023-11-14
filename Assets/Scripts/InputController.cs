@@ -8,7 +8,7 @@ public class InputController : MonoBehaviour
     [SerializeField] SpriteRenderer sr;
     [SerializeField] private int maxJump = 2;
     [SerializeField] private float maxSlope = 0.8f;
-    private int speed = 5;
+    private int speed = 10;
     private int nbJump = 0;
 
 

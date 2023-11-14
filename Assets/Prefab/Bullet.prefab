@@ -138,7 +138,7 @@ MonoBehaviour:
   whatDestroyBullet:
     serializedVersion: 2
     m_Bits: 72
-  destroyTime: 1
+  destroyTime: 5
   normalBulletSpeed: 15
   normalBulletDamage: 2
   physicsBulletSpeed: 17.5

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(LineRenderer))]
 public class AimHandler : MonoBehaviour
 {
     [SerializeField] private GameObject weapon;
@@ -11,15 +12,18 @@ public class AimHandler : MonoBehaviour
     private Transform parent;
 
     private GameObject bulletInst;
-
     private Vector2 worldPos;
     private Vector2 direction;
     [SerializeField] private float angle;
 
+    [Header("Trajectory Elements")]
+    [SerializeField] private LineRenderer trajectory;
+
+
     private void Start()
     {
-        parent = GetComponent<Transform>();
-        weaponRenderer = weapon.GetComponent<SpriteRenderer>();
+        parent          = GetComponent<Transform>();
+        weaponRenderer  = weapon.GetComponent<SpriteRenderer>();
     }
 
 
@@ -42,7 +46,7 @@ public class AimHandler : MonoBehaviour
         direction = direction.normalized;
         weapon.transform.right = direction;
 
-        //flip the gun when it reaches a 90° threshold
+        //flip the gun when it reaches a 90deg threshold
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         Vector3 localScale = weapon.transform.localScale;
@@ -100,7 +104,8 @@ public class AimHandler : MonoBehaviour
 
     private void HandleGunShooting()
     {
-        if(Mouse.current.leftButton.wasPressedThisFrame)
+        //trajectory.DrawTrajectory(weapon.transform.position, );
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             //spawn bullet
             bulletInst = Instantiate(bullet, bulletSpawnPoint.position, weapon.transform.rotation);
