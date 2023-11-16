@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionCollectible : MonoBehaviour
@@ -5,10 +6,9 @@ public class CollisionCollectible : MonoBehaviour
     [SerializeField] Transform collectible;
     [SerializeField] private UIManager manager;
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +17,8 @@ public class CollisionCollectible : MonoBehaviour
         {
             //Debug.Log("Triggered");
             manager.addCollectible();
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
+            //Destroy(collision.gameObject);
         }
     }
 }

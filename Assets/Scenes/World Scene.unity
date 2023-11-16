@@ -1497,6 +1497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  currentHealth: 0
 --- !u!120 &393912290
 LineRenderer:
   serializedVersion: 2
@@ -1887,7 +1888,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1615210976}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: OnResumeButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2758,7 +2759,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1615210976}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: OnRestartButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3243,7 +3244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpKey: 32
   shootKey: 323
-  leftKey: 113
+  leftKey: 97
   rightKey: 100
   upKey: 122
   pauseKey: 27
@@ -3581,6 +3582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  currentHealth: 0
 --- !u!61 &1474576125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3755,6 +3757,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb3c8bd6bf9b5147aa34a97cab6e5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputController: {fileID: 393912283}
+  Health: {fileID: 393912289}
+  UIManager: {fileID: 1387098940}
   gameObjectGame: {fileID: 1387098938}
   gameObjectMenu: {fileID: 352090791}
 --- !u!1 &1622616340
@@ -4196,7 +4201,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1615210976}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: Quit
+        m_MethodName: OnLeaveButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

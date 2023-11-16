@@ -12,8 +12,10 @@ public class MenuController : MonoBehaviour
 {
     public InputController InputController;
     public Health Health;
+    public UIManager UIManager;
     public GameObject gameObjectGame;
     public GameObject gameObjectMenu;
+
 
     public static MenuController Singleton;
     public void Awake()
@@ -59,6 +61,7 @@ public class MenuController : MonoBehaviour
 
         InputController.ResetPosition();
         Health.RegenMaxHealth();
+        UIManager.ResetCollectibles();
 
         gameObjectGame.SetActive(true);
         gameObjectMenu.SetActive(false);
