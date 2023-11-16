@@ -27,6 +27,10 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] private float physicsBulletDamage = 2f;
 
     private float damage;
+    //Pooling system
+    private Queue<GameObject> queue = null;
+    private Coroutine cr;
+
     public enum BulletType
     {
         Normal,
@@ -34,18 +38,29 @@ public class BulletBehaviour : MonoBehaviour
     }
     public BulletType bulletType;
 
-    // Start is called before the first frame update
-    void Start()
+    //Awake then OnEnable then Start
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         manager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        SetDestroyTime();
+    }
 
+    //Happen everytime !
+    private void OnEnable()
+    {
         //Change rb stats based on bullet type
         SetRbStats();
 
         //Set velocity based on bullet type
         InitializeBulletStats();
+        //SetDestroyTime();
+        //S'il existe deja une corroutine
+        if (cr != null)
+        {
+            StopCoroutine(cr);
+        }
+        cr = StartCoroutine(ReturnToPoolCoRoutine());
     }
 
     private void FixedUpdate()
@@ -59,7 +74,6 @@ public class BulletBehaviour : MonoBehaviour
             }
         }
     }
-
 
     private void SetRbStats()
     {
@@ -76,7 +90,8 @@ public class BulletBehaviour : MonoBehaviour
 
     private void SetDestroyTime()
     {
-        Destroy(gameObject, destroyTime);
+        //Destroy(gameObject, destroyTime);
+        Invoke("ReturnToPool", destroyTime);
     }
 
     private void InitializeBulletStats()
@@ -118,13 +133,34 @@ public class BulletBehaviour : MonoBehaviour
                 //Damage enemy
                 damageable.TakeDamage(damage);
             }
-            //Destroy bullet
-            Destroy(gameObject);
+            //Destroy bullet without pooling system
+            //Destroy(gameObject);
+
+            //With Pooling system
+            ReturnToPool();
         }
     }
 
     private void SetStraightVelocity()
     {
         rb.velocity = transform.right * normalBulletSpeed;
+    }
+
+    private void ReturnToPool()
+    {
+        queue.Enqueue(this.gameObject);
+        this.gameObject.SetActive(false);
+    }
+
+    public void SetPoolRef(Queue<GameObject> refPool)
+    {
+        this.queue = refPool;
+    }
+
+    //Co-routine
+    IEnumerator ReturnToPoolCoRoutine()
+    {
+        yield return new WaitForSeconds(destroyTime);
+        ReturnToPool();
     }
 }

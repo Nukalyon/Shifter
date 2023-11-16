@@ -1209,10 +1209,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1622616340}
+  angle: 0
   bullet: {fileID: 7492172802222276156, guid: b261b9a1729bf1e49beb991dc52471c3, type: 3}
   bulletSpawnPoint: {fileID: 390821406}
-  trajectory: {fileID: 0}
-  angle: 0
+  trajectory: {fileID: 393912293}
+  launchForce: 1.5
+  trajectoryTimeStep: 0.05
+  trajectoryStepCount: 50
 --- !u!120 &393912293
 LineRenderer:
   serializedVersion: 2
@@ -2055,7 +2058,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1622616341}
   - component: {fileID: 1622616342}
-  - component: {fileID: 1622616343}
   - component: {fileID: 1622616344}
   m_Layer: 0
   m_Name: Weapon
@@ -2132,20 +2134,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1622616343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622616340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703e6b86c5d81034f89e04e427004809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineSegments: 100
-  timeOfTheFlight: 5
 --- !u!120 &1622616344
 LineRenderer:
   serializedVersion: 2

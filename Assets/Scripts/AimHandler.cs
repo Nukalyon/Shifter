@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,6 @@ public class AimHandler : MonoBehaviour
     private SpriteRenderer weaponRenderer;
     private Transform parent;
 
-    private GameObject bulletInst;
     private Vector2 worldPos;
     private Vector2 direction;
     [SerializeField] private float angle;
@@ -26,6 +26,38 @@ public class AimHandler : MonoBehaviour
     Vector2 velocity, startMousePos, currentMousePos;
 
 
+
+    [Header("Pooling System Elements")]
+    //Pooling system
+    //Fluidifier l'interface hierarchique
+    private GameObject categoryProjectileInHierarchy;
+    //Type of bullet
+    private Queue<GameObject> pooling = new Queue<GameObject>();
+    [SerializeField] private int initialPoolSize = 10;
+    [SerializeField] private int batchPoolSize = 5;
+
+    private void Awake()
+    {
+        categoryProjectileInHierarchy = new GameObject("Projectile's Pool");
+        AddProjectileToPool(initialPoolSize);
+    }
+
+    private void AddProjectileToPool(int nb)
+    {
+        //Remplissage de la pool de projectiles
+        for (int i = 0; i < nb; i++)
+        {
+            GameObject proj = Instantiate(bullet);
+            //Permet de stocker tout les proj dans un seul tab
+            proj.transform.parent = categoryProjectileInHierarchy.transform;
+            //Empeche le rendu à l'ui
+            proj.SetActive(false);
+            //Donne la reference de la pool
+            proj.GetComponent<BulletBehaviour>().SetPoolRef(pooling);
+            pooling.Enqueue(proj);
+
+        }
+    }
 
     private void Start()
     {
@@ -126,10 +158,27 @@ public class AimHandler : MonoBehaviour
         //trajectory.DrawTrajectory(weapon.transform.position, );
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            //spawn bullet
-            bulletInst = Instantiate(bullet, bulletSpawnPoint.position, weapon.transform.rotation);
+            //spawn bullet before pooling
+            //Instantiate(bullet, bulletSpawnPoint.position, weapon.transform.rotation);
+
+            //Regarde si la liste est vide -> Oui: Creer des instances en plus
+            if(pooling.Count== 0)
+            {
+                AddProjectileToPool(batchPoolSize);
+            }
+
+            //With Pooling system
+            GameObject newProjectile = pooling.Dequeue();
+            //Donne le 2eme paramètre
+            newProjectile.transform.position = bulletSpawnPoint.position;
+            //Donne le 3eme paramètre
+            newProjectile.transform.rotation = weapon.transform.rotation;
+            //Rendre visible
+            newProjectile.SetActive(true);
         }
     }
+
+
 
     /*  REFERENCE
      * https://www.youtube.com/watch?v=IJLRXbSug38&t=209s&ab_channel=LevelUp
