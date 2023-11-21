@@ -1,5 +1,4 @@
 using Cinemachine;
-using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -26,6 +25,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         //Recherche de la Camera virtuelle de cinemachine
         CinemachineVirtualCamera camera = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        //Debug.Log("Camera trouvee ? " + camera != null);
         if (camera != null)
         {
             camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;

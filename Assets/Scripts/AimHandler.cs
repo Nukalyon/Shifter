@@ -33,7 +33,7 @@ public class AimHandler : MonoBehaviour
     private GameObject categoryProjectileInHierarchy;
     //Type of bullet
     private Queue<GameObject> pooling = new Queue<GameObject>();
-    [SerializeField] private int initialPoolSize = 10;
+    [SerializeField] private int initialPoolSize = 5;
     [SerializeField] private int batchPoolSize = 5;
 
     private void Awake()
@@ -174,7 +174,7 @@ public class AimHandler : MonoBehaviour
             //Donne le 3eme paramètre
             newProjectile.transform.rotation = weapon.transform.rotation;
             //Rendre visible
-            newProjectile.SetActive(true);
+            newProjectile.SetActive(true); 
         }
     }
 
