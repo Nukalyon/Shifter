@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,46 +10,83 @@ using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
 {
-    public static bool gameIsPaused = false;
-    public GameObject pauseMenuUI;
+    public InputController InputController;
+    public Health Health;
+    public UIManager UIManager;
+    public GameObject gameObjectGame;
+    public GameObject gameObjectMenu;
 
+
+    public static MenuController Singleton;
+    public void Awake()
+    {
+        //gameObjectGame = GameObject.Find("Canvas Game").GetComponent<Canvas>();
+        //gameObjectMenu = GameObject.Find("Canvas Menu").GetComponent<Canvas>();
+
+        if (!Singleton)
+        { 
+            Singleton = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        if(gameObjectGame == null || gameObjectMenu == null)
+        {
+            Debug.LogError("Canvas components not found.");
+        }
+        else
+        {
+            gameObjectGame.SetActive(true);
+            gameObjectMenu.SetActive(false);
+        }
+
+    }
     public void changeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
         Debug.Log("Changed scene.");
     }
 
-    public void Quit()
+    public void OnLeaveButtonClick()
     {
         Application.Quit();
         Debug.Log("Application closed.");
     }
-    public void Restart()
+    public void OnRestartButtonClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+
+        InputController.ResetPosition();
+        Health.RegenMaxHealth();
+        UIManager.ResetCollectibles();
+
+        gameObjectGame.SetActive(true);
+        gameObjectMenu.SetActive(false);
+
         Debug.Log("Scene restarted.");
     }
 
-    public void Escape()
+    public void OnEscapeButtonClick()
     {
-        changeScene("PauseMenu"/*, LoadSceneMode.Single*/);
+        gameObjectGame.SetActive(false);
+        gameObjectMenu.SetActive(true);
 
-        //pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        gameIsPaused = true;
 
-        Debug.Log("Application paused.");
+        Debug.Log("Pause menu loaded (Game paused).");
     }
 
-    internal void Resume()
+    public void OnResumeButtonClick()
     {
-        SceneManager.LoadScene("SampleScene"/*, LoadSceneMode.Single*/);
+        gameObjectGame.SetActive(true);
+        gameObjectMenu.SetActive(false);
 
-        //pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        gameIsPaused = false;
 
-        Debug.Log("Application resumed.");
+        Debug.Log("Pause menu hidden (Game resumed).");
     }
 
 

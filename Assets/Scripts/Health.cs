@@ -6,7 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 10;
-    private int currentHealth = 0;
+    [SerializeField] private int currentHealth = 0;
 
 
     // Start is called before the first frame update
@@ -28,5 +28,9 @@ public class Health : MonoBehaviour
     {
         currentHealth += healthAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    }
+    public void RegenMaxHealth()
+    {
+        currentHealth = maxHealth;
     }
 }

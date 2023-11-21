@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -33,10 +34,9 @@ public class InputManager : MonoBehaviour
     [SerializeField] private FireingBehaviour projectile;
     [SerializeField] private Transform projectileFirePoint;
 
-    [Header("Scene manager")]
-    [SerializeField] private MenuController menu;
 
-    void Awake()
+
+    public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
@@ -50,19 +50,17 @@ public class InputManager : MonoBehaviour
         ChangeScene();
     }
 
-    private void ChangeScene()
+    public void ChangeScene()
     {
         if (Input.GetKeyDown(pauseKey) && state == SceneState.gameActive)
         {
-            menu.Escape();
+            MenuController.Singleton.OnEscapeButtonClick();
             state = SceneState.gamePaused;
-            Debug.Log("Pause scene loaded.");
         }
         else if (Input.GetKeyDown(pauseKey) && state == SceneState.gamePaused)
         {
-            menu.Resume();
+            MenuController.Singleton.OnResumeButtonClick();
             state = SceneState.gameActive;
-            Debug.Log("Game resumed.");
         }
     }
 
@@ -106,4 +104,5 @@ public class InputManager : MonoBehaviour
             //projectile.FireProjectile();
         }
     }
+
 }
