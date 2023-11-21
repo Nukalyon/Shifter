@@ -5,11 +5,14 @@ public class CollisionCollectible : MonoBehaviour
 {
     [SerializeField] Transform collectible;
     [SerializeField] private UIManager manager;
+    GameObject player;
 
-
-    private void Update()
+    private void Start()
     {
+        player = this.GetComponent<GameObject>();
+        Debug.Log(player);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +22,10 @@ public class CollisionCollectible : MonoBehaviour
             manager.addCollectible();
             collision.gameObject.SetActive(false);
             //Destroy(collision.gameObject);
+        }
+        if(collision.CompareTag("PowerColor"))
+        {
+            //Ajouter la couleur dans l'inventaire du joueur
         }
     }
 }
