@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Noise(float amplitudeGain, float frequencyGain)
     {
+        /*
         cmFreeCam.topRig.Noise.m_AmplitudeGain = amplitudeGain;
         cmFreeCam.middleRig.Noise.m_AmplitudeGain = amplitudeGain;
         cmFreeCam.bottomRig.Noise.m_AmplitudeGain = amplitudeGain;
@@ -46,7 +47,7 @@ public class Enemy : MonoBehaviour, IDamageable
         cmFreeCam.topRig.Noise.m_FrequencyGain = frequencyGain;
         cmFreeCam.middleRig.Noise.m_FrequencyGain = frequencyGain;
         cmFreeCam.bottomRig.Noise.m_FrequencyGain = frequencyGain;
-
+        */
     }
 
     private void CineMachineCameraShake(float intensity, float duration)

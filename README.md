@@ -6,7 +6,7 @@ flaques avec buff / nerf
 
 Fin -> Glissade sur peinture
 
-##10 Octobre - Tâche 2
+## Tâche 2 - 10 Octobre
 - Collectible (Teintures)
 		- Art
 		- Collectible
@@ -19,15 +19,20 @@ Fin -> Glissade sur peinture
 - Mechanic Principal
 
 
-##Tâche 3 - 07 Novembre
+## Tâche 3 - 07 Novembre
 - Build
 - Menu Principal
 - Menu Pause
 
-##Tâche 4 - 14 Novembre
+## Tâche 4 - 14 Novembre
 - Effets Sonores
 - Système de particules
 - Creative (Camera Shake)
 
 ##Tâche 5 - 28 Novembre
 - Tutoriel
+
+## IA Facile à compliquer
+FSM - Finite State Machine
+Behaviour Tree
+GOAD -> to look but not implement
