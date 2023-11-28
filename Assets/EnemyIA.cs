@@ -7,20 +7,13 @@ public class EnemyIA : MonoBehaviour
     private Vector2 origin;
     [SerializeField]
     private EnemyState currentState = EnemyState.IDLE;
-    [SerializeField]
-    private Transform joueur;
-    [SerializeField]
-    float chaseRayon;
-    [SerializeField]
-    float chaseVitesse;
-    [SerializeField]
-    float attackRayon;
-    [SerializeField]
-    float attackVitesse;
-    [SerializeField]
-    float patrolRayon;
-    [SerializeField]
-    float patrolVitesse;
+    [SerializeField] private Transform joueur;
+    [SerializeField] float chaseRayon;
+    [SerializeField] float chaseVitesse;
+    [SerializeField] float attackRayon;
+    [SerializeField] float attackVitesse;
+    [SerializeField] float patrolRayon;
+    [SerializeField] float patrolVitesse;
 
     private void Awake()
     {

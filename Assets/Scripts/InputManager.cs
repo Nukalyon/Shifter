@@ -31,7 +31,6 @@ public class InputManager : MonoBehaviour
     */
     [Header("Object References")]
     [SerializeField] private InputController player;
-    [SerializeField] private FireingBehaviour projectile;
     [SerializeField] private Transform projectileFirePoint;
 
 

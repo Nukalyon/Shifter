@@ -26,31 +26,18 @@ public class Enemy : MonoBehaviour, IDamageable
             {
                 cr = StartCoroutine(_ProcessShake());
             }
-            CineMachineCameraShake(2.0f, 1.0f);
             Destroy(gameObject);
         }
     }
     private IEnumerator _ProcessShake(float shakeIntensity = 2.0f, float shakeTiming = 2.0f)
     {
-        Noise(1, shakeIntensity);
+        //Noise(1, shakeIntensity);
+        CineMachineCameraShake(1, shakeIntensity);
         yield return new WaitForSeconds(shakeTiming);
-        Noise(0, 0);
+        CineMachineCameraShake(0, 0);
     }
 
-    public void Noise(float amplitudeGain, float frequencyGain)
-    {
-        /*
-        cmFreeCam.topRig.Noise.m_AmplitudeGain = amplitudeGain;
-        cmFreeCam.middleRig.Noise.m_AmplitudeGain = amplitudeGain;
-        cmFreeCam.bottomRig.Noise.m_AmplitudeGain = amplitudeGain;
-
-        cmFreeCam.topRig.Noise.m_FrequencyGain = frequencyGain;
-        cmFreeCam.middleRig.Noise.m_FrequencyGain = frequencyGain;
-        cmFreeCam.bottomRig.Noise.m_FrequencyGain = frequencyGain;
-        */
-    }
-
-    private void CineMachineCameraShake(float intensity, float duration)
+    private void CineMachineCameraShake(float intensity, float frequency)
     {
         //Recherche de la Camera virtuelle de cinemachine
         CinemachineVirtualCamera camera = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
@@ -58,7 +45,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (camera != null)
         {
             camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
-            camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = duration;
+            camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
 
         }
     }

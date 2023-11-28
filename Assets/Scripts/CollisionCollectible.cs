@@ -10,7 +10,6 @@ public class CollisionCollectible : MonoBehaviour
     private void Start()
     {
         player = this.GetComponent<GameObject>();
-        Debug.Log(player);
     }
 
 
@@ -26,6 +25,11 @@ public class CollisionCollectible : MonoBehaviour
         if(collision.CompareTag("PowerColor"))
         {
             //Ajouter la couleur dans l'inventaire du joueur
+            Color color = collision.gameObject.GetComponent<SpriteRenderer>().color;
+            Vector2 vect = collision.gameObject.transform.position;
+            Item item = new Item(color, vect.x, vect.y);
+            manager.AddPower(item);
+            collision.gameObject.SetActive(false);
         }
     }
 }
