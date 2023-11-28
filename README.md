@@ -23,3 +23,11 @@ Fin -> Glissade sur peinture
 - Build
 - Menu Principal
 - Menu Pause
+
+##Tâche 4 - 14 Novembre
+- Effets Sonores
+- Système de particules
+- Creative (Camera Shake)
+
+##Tâche 5 - 28 Novembre
+- Tutoriel
