@@ -16,8 +16,8 @@ public class MenuController : MonoBehaviour
     public GameObject gameObjectGame;
     public GameObject gameObjectMenu;
 
-
     public static MenuController Singleton;
+
     public void Awake()
     {
         //gameObjectGame = GameObject.Find("Canvas Game").GetComponent<Canvas>();
@@ -44,11 +44,7 @@ public class MenuController : MonoBehaviour
         }
 
     }
-    public void changeScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-        Debug.Log("Changed scene.");
-    }
+
 
     public void OnLeaveButtonClick()
     {

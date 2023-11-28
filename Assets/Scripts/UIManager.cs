@@ -41,11 +41,14 @@ public class UIManager : MonoBehaviour
     }
 
     public void ResetCollectibles()
-    {
+    {   
+        //pour chaque gameobject de type collectible dan la liste collectibles...
         foreach (GameObject collectible in collectibles)
-        {
+        {   //activer
             collectible.SetActive(true);
         }
+
+        //Reset le compteur
         collectibleCollected = 0;
         updateCoinDisplay();
     }
