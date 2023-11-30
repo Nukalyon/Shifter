@@ -19,7 +19,6 @@ public class MenuController : MonoBehaviour
         if (!Singleton)
         { 
             Singleton = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -37,7 +36,7 @@ public class MenuController : MonoBehaviour
         }
 
     }
-    public void changeScene(string sceneName)
+    public void changeScene(int sceneName)
     {
         SceneManager.LoadScene(sceneName);
         Debug.Log("Changed scene.");

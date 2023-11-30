@@ -11,7 +11,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     private Rigidbody2D rb;
     private AudioManager manager;
-    [SerializeField]private ParticleSystem particle;
+    [SerializeField] private ParticleSystem particle;
 
     [Header("General Bullet Stats")]
     [SerializeField] private LayerMask whatDestroyBullet;
@@ -65,10 +65,10 @@ public class BulletBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(bulletType == BulletType.Physics)
+        if (bulletType == BulletType.Physics)
         {
             //Rotate bullet in direction of velocity
-            if(rb != null)
+            if (rb != null)
             {
                 transform.right = rb.velocity;
             }
@@ -96,7 +96,7 @@ public class BulletBehaviour : MonoBehaviour
 
     private void InitializeBulletStats()
     {
-        switch(bulletType)
+        switch (bulletType)
         {
             case BulletType.Normal:
                 SetStraightVelocity();
@@ -116,9 +116,31 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        bool attackEnemy = false;
         //Bitwise operator
-        if((whatDestroyBullet.value & (1 << collision.gameObject.layer)) > 0)
+        if ((whatDestroyBullet.value & (1 << collision.gameObject.layer)) > 0)
         {
+            if (collision.gameObject.layer == 6)
+            {
+                Color colEnemy = collision.GetComponent<SpriteRenderer>().color;
+                Color ourColor = this.GetComponent<SpriteRenderer>().color;
+                Debug.Log(ourColor);
+                Debug.Log(colEnemy);
+                if (ourColor == colEnemy)
+                {
+                    attackEnemy = true;
+                }
+            }
+            if(attackEnemy)
+            {
+                //Damage enemy
+                IDamageable damageable = collision.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    //Damage enemy
+                    damageable.TakeDamage(damage);
+                }
+            }
             //Spawn particules
             ParticleSystem particule = Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(particule, 2);
@@ -126,18 +148,12 @@ public class BulletBehaviour : MonoBehaviour
             manager.PlaySong("splash");
             //Screenshake
             //CameraShake.instance.ShakeCamera(2, 10);
-            //Damage enemy
-            IDamageable damageable = collision.GetComponent<IDamageable>();
-            if(damageable != null)
-            {
-                //Damage enemy
-                damageable.TakeDamage(damage);
-            }
             //Destroy bullet without pooling system
             //Destroy(gameObject);
 
             //With Pooling system
             ReturnToPool();
+
         }
     }
 

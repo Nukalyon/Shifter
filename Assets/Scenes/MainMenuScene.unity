@@ -722,13 +722,13 @@ MonoBehaviour:
       - m_Target: {fileID: 2037482821}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: changeScene
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: World Scene
+          m_StringArgument: WorldScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &591634121
@@ -2156,6 +2156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb3c8bd6bf9b5147aa34a97cab6e5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputController: {fileID: 0}
+  Health: {fileID: 0}
+  UIManager: {fileID: 0}
   gameObjectGame: {fileID: 0}
   gameObjectMenu: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

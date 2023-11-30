@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,7 +33,7 @@ public class AimHandler : MonoBehaviour
     //Fluidifier l'interface hierarchique
     private GameObject categoryProjectileInHierarchy;
     //Type of bullet
-    private Queue<GameObject> pooling = new Queue<GameObject>();
+    private static Queue<GameObject> pooling = new Queue<GameObject>();
     [SerializeField] private int initialPoolSize = 5;
     [SerializeField] private int batchPoolSize = 5;
 
@@ -194,5 +195,10 @@ public class AimHandler : MonoBehaviour
         }
         trajectory.positionCount = trajectoryStepCount;
         trajectory.SetPositions(positions);
+    }
+
+    public static Queue<GameObject> GetPool()
+    {
+        return pooling;
     }
 }

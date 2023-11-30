@@ -62,17 +62,36 @@ public class UIManager : MonoBehaviour
 
     internal void AddPower(Item item)
     {
-        if(!items.Contains(item))
+        DefaultControls.Resources uiResources = new DefaultControls.Resources();
+        foreach (Sprite sprite in Resources.FindObjectsOfTypeAll<Sprite>())
+        {
+            if (sprite.name == "UISprite")
+            {
+                uiResources.standard = sprite;
+                break;
+            }
+        }
+        if (!items.Contains(item))
         {
             items.Add(item);
             string col = ExtColorToNames.FindColor(item.GetColor());
-            GameObject temp = new GameObject(col);
-            temp.transform.parent = listPowerUps.transform;
-            temp.AddComponent<TextMeshProUGUI>();
-            temp.GetComponent<TextMeshProUGUI>().text = col;
-            temp.GetComponent<TextMeshProUGUI>().fontSize = 30;
-            temp.SetActive(true);
+            GameObject newButton = DefaultControls.CreateButton(uiResources);
+            newButton.transform.SetParent(listPowerUps.transform, false);
+            newButton.name = col;
+            newButton.GetComponentInChildren<Text>().text = col;
+            newButton.GetComponent<Image>().color = item.GetColor();
+            newButton.GetComponent<Button>().onClick.AddListener(delegate { btnClicked(newButton); });
+            newButton.SetActive(true);
         }
         updateDisplay();
+    }
+
+    public void btnClicked(GameObject newButton)
+    {
+        Color todo = newButton.GetComponent<Image>().color;
+        foreach (GameObject go in AimHandler.GetPool())
+        {
+            go.GetComponent<SpriteRenderer>().color = todo;
+        }
     }
 }
