@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
             temp.transform.parent = listPowerUps.transform;
             temp.AddComponent<TextMeshProUGUI>();
             temp.GetComponent<TextMeshProUGUI>().text = col;
-            temp.GetComponent<TextMeshProUGUI>().fontSize = 15;
+            temp.GetComponent<TextMeshProUGUI>().fontSize = 30;
             temp.SetActive(true);
         }
         updateDisplay();

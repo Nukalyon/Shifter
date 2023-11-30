@@ -135,27 +135,27 @@ public class EnemyIA : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.IDLE:
-                //Idle();
+                Idle();
                 //Animator.Play("IDLE");
-                Debug.Log("Idle");
+                //Debug.Log("Idle");
                 break;
 
             case EnemyState.PATROL:
-                //Patrol();
+                Patrol();
                 //Animator.Play("PATROL");
-                Debug.Log("Patrol");
+                //Debug.Log("Patrol");
                 break;
 
             case EnemyState.ATTACK:
-                //Attack();
+                Attack();
                 //Animator.Play("ATATCK");
-                Debug.Log("Attack");
+                //Debug.Log("Attack");
                 break;
 
             case EnemyState.CHASE:
-                //Chase();
+                Chase();
                 //Animator.Play("CHASE");
-                Debug.Log("Chase");
+                //Debug.Log("Chase");
                 break;
         }
     }
