@@ -6,6 +6,8 @@ flaques avec buff / nerf
 
 Fin -> Glissade sur peinture
 
+![Plan Global](./Screenshots/Shifter.png)
+
 ## Tâche 2 - 10 Octobre
 - Collectible (Teintures)
 		- Art
